@@ -10,7 +10,7 @@ gem 'pg', '~> 0.17.1'
 # js and css frameworks
 gem 'jquery-rails', '3.1.3'
 gem 'jquery-ui-rails', '~> 4.2.1'
-gem 'bootstrap-sass', '~> 3.1.1.1'
+gem 'bootstrap-sass'
 gem 'select2-rails', '~> 3.5.9'
 gem 'd3js-rails', '~> 3.1.6'
 gem 'jcrop-rails-v2', '~> 0.9.12.3'
@@ -19,6 +19,17 @@ gem 'fullcalendar-rails'
 
 # Ominiauth
 gem 'omniauth-shibboleth'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-bootstrap-rtl'
+  gem 'rails-assets-jquery-knob'
+  gem 'rails-assets-bootstrap-daterangepicker'
+  gem 'rails-assets-jquery-sparkline'
+  gem 'rails-assets-jquery-icheck'
+  gem 'rails-assets-admin-lte'
+end
+
+gem 'admin_lte-rails', :git => 'https://github.com/RicardoBorgesGO/admin_lte-rails'
 
 # assets
 gem 'sass-rails', '~> 4.0.3'

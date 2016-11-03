@@ -10,6 +10,7 @@
 //= require select2_locale_pt-BR
 //= require daterangepicker
 //= require_self
+//= require admin_lte/admin_lte
 
 var WEBY = {};
 
