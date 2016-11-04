@@ -1,14 +1,19 @@
 <% title ".extensions" %>
 <% breadcrumb :extensions %>
-<div class="pull-right">
-  <% if check_permission(Sites::Admin::ExtensionsController, 'new') %>
-    <%= link_to t(".new_extension"),
-      new_site_admin_extension_path,
-      class: "btn btn-success" %>
-  <% end %>
-</div>
-<div class="clearfix form-group"></div>
 
-<div id="list">
-  <%= render :partial => 'list' %>
+<div class="box">
+  <div class="box-body">
+    <div class="pull-right">
+      <% if check_permission(Sites::Admin::ExtensionsController, 'new') %>
+        <%= link_to t(".new_extension"),
+          new_site_admin_extension_path,
+          class: "btn btn-success" %>
+      <% end %>
+    </div>
+    <div class="clearfix form-group"></div>
+
+    <div id="list">
+      <%= render :partial => 'list' %>
+    </div>
+  </div>
 </div>

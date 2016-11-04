@@ -1,12 +1,16 @@
 <% title ".extensions" %>
 <% breadcrumb :new_extension %>
+
 <%= simple_form_for [:site_admin, @extension], html: { class: 'form-horizontal'} do |f| %>
-  <%= f.show_errors %>
+  <div class="box">
+    <div class="box-body">
+      <%= f.show_errors %>
 
-  <%= f.input :name, :collection => available_extensions_sorted %>
-
-  <div class="form-actions">
-    <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
-    <%= link_to t("back"), :back, class: "btn btn-default" %>
+      <%= f.input :name, :collection => available_extensions_sorted %>
+    </div>
+    <div class="box-footer">
+      <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
+      <%= link_to t("back"), :back, class: "btn btn-default" %>
+    </div>
   </div>
 <% end %>

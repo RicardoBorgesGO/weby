@@ -1,25 +1,29 @@
 <% title ".pages" %>
 <% breadcrumb params[:search].present? ? :pages_search : :pages, params[:search] %>
-<div class="row">
-  <div class="col-md-5">
-    <%= form_tag site_admin_pages_path, method: 'get', autocapitalize: "off", class: 'search' do %>
-      <%= search_input params[:search] %>
-    <% end %>
-  </div>
-  <div class="col-md-7">
-    <div class="pull-right">
-      <% with_permission(action: :new) do %>
-        <%= link_to t(".new_page"),
-            new_site_admin_page_path,
-            class: "btn btn-success" %>
-      <% end %>
-      <% with_permission(action: [:recover, :purge]) do %>
-        <%= link_to t("recycle_bin"), recycle_bin_site_admin_pages_path, class: "btn btn-default" %>
-      <% end %>
+<div class="box">
+  <div class="box-body">
+    <div class="row">
+      <div class="col-md-5">
+        <%= form_tag site_admin_pages_path, method: 'get', autocapitalize: "off", class: 'search' do %>
+          <%= search_input params[:search] %>
+        <% end %>
+      </div>
+      <div class="col-md-7">
+        <div class="pull-right">
+          <% with_permission(action: :new) do %>
+            <%= link_to t(".new_page"),
+                new_site_admin_page_path,
+                class: "btn btn-success" %>
+          <% end %>
+          <% with_permission(action: [:recover, :purge]) do %>
+            <%= link_to t("recycle_bin"), recycle_bin_site_admin_pages_path, class: "btn btn-default" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div id="pages">
+      <%= render :partial => "list" %>
     </div>
   </div>
-</div>
-
-<div id="pages">
-  <%= render :partial => "list" %>
 </div>

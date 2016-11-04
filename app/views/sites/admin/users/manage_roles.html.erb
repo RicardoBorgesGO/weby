@@ -1,38 +1,43 @@
 <% title ".users" %>
 <% breadcrumb :users %>
-<p class="pull-right">
-  <% if check_permission(Admin::RolesController, [:index]) %>
-    <%= link_to t(".roles_permissions"),
-      main_app.admin_roles_path,
-      class: "btn btn-default" %>
-  <% end %>
-</p>
-<div class="clearfix"></div>
 
-<div class="tabbable">
-  <ul class="nav nav-tabs" id="style-tab">
-    <li class="<%= params["adms"] ? "" : "active" %>" >
-      <a href="#users" data-toggle="tab"><%= t(".users") %></a>
-    </li>
-    <li class="<%= params["adms"] ? "active" : "" %>" >
-      <a href="#adms" data-toggle="tab"><%= t(".adms") %></a>
-    </li>
-  </ul>
+<div class="box">
+  <div class="box-body">
+    <p class="pull-right">
+      <% if check_permission(Admin::RolesController, [:index]) %>
+        <%= link_to t(".roles_permissions"),
+          main_app.admin_roles_path,
+          class: "btn btn-default" %>
+      <% end %>
+    </p>
+    <div class="clearfix"></div>
 
-  <div class="tab-content">
-    <div class="tab-pane <%= params["adms"] ? "" : "active" %>" id="users">
-      <div id="enroled">
-        <%= render 'enroled' %>
+    <div class="tabbable">
+      <ul class="nav nav-tabs" id="style-tab">
+        <li class="<%= params["adms"] ? "" : "active" %>" >
+          <a href="#users" data-toggle="tab"><%= t(".users") %></a>
+        </li>
+        <li class="<%= params["adms"] ? "active" : "" %>" >
+          <a href="#adms" data-toggle="tab"><%= t(".adms") %></a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane <%= params["adms"] ? "" : "active" %>" id="users">
+          <div id="enroled">
+            <%= render 'enroled' %>
+          </div>
+          <div id="enrole">
+            <%= render 'enrole' %>
+          </div>
+        </div>
+        <div class="tab-pane <%= params["adms"] ? "active" : "" %>" id="adms">
+          <div id="enrole_adms">
+            <%= render 'enrole_adms' %>
+          </div>
+        </div>
       </div>
-      <div id="enrole">
-        <%= render 'enrole' %>
-      </div>
-    </div>
-    <div class="tab-pane <%= params["adms"] ? "active" : "" %>" id="adms">
-      <div id="enrole_adms">
-        <%= render 'enrole_adms' %>
-      </div>
+
     </div>
   </div>
-
 </div>

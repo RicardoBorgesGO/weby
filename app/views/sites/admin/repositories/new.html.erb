@@ -2,35 +2,40 @@
 <% breadcrumb :repositories_new%>
 
 <%= simple_form_for [:site_admin, @repository], remote: true, :html => { class: 'form-horizontal', id: 'create-repository-form'} do |f| %>
-  <%= f.show_errors %>
+  <div class="box">
+    <div class="box-body">
+      <%= f.show_errors %>
 
-  <%= f.input :archive, as: :file, label: t('.add_archives'), input_html: {multiple: true} %>
-  <div class="form-group string">
-    <p class="text-warning col-md-12">
-      <%= t(".repository_alert") %>
-    </p>
-    <p class="help-block col-md-6 col-md-offset-3">
-      <%= t(".max_file_size", param: current_settings.max_file_size) %>
-    </p>
-  </div>
-  <%= f.input :site_id, input_html: {value: @site.id}, as: :hidden %>
+      <%= f.input :archive, as: :file, label: t('.add_archives'), input_html: {multiple: true} %>
+      <div class="form-group string">
+        <p class="text-warning col-md-12">
+          <%= t(".repository_alert") %>
+        </p>
+        <p class="help-block col-md-6 col-md-offset-3">
+          <%= t(".max_file_size", param: current_settings.max_file_size) %>
+        </p>
+      </div>
+      <%= f.input :site_id, input_html: {value: @site.id}, as: :hidden %>
 
-  <div id="upload-preview">
-    <div class="well repo-template closeable" style="display: none;">
-      <button type="button" class="close" data-dismiss="repo-item" tabindex="-1" title="<%= t("destroy") %>">&times;</button>
-        <%= f.input :archive, as: :string, input_html: {disabled: true, value: ""} %>
-        <%= f.input :title %>
-        <%= f.input :legend %>
-        <%= f.input :description, as: :text %>
-            <label class="string required control-label">
-              <abbr title="<%= t('simple_form.required.text') %>">*</abbr>
-            </label><%= "#{t(".field_required")} #{t(".accessibility_needs")}" %>
-        <div class="status"></div>
+      <div id="upload-preview">
+        <div class="well repo-template closeable" style="display: none;">
+          <button type="button" class="close" data-dismiss="repo-item" tabindex="-1" title="<%= t("destroy") %>">&times;</button>
+            <%= f.input :archive, as: :string, input_html: {disabled: true, value: ""} %>
+            <%= f.input :title %>
+            <%= f.input :legend %>
+            <%= f.input :description, as: :text %>
+                <label class="string required control-label">
+                  <abbr title="<%= t('simple_form.required.text') %>">*</abbr>
+                </label><%= "#{t(".field_required")} #{t(".accessibility_needs")}" %>
+            <div class="status"></div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="form-actions">
-    <%= f.button :submit, class: 'btn btn-primary send-files', data: {disable_with: t("please_wait")} %>
-    <%= link_to t("back"), :back, class: "btn btn-default" %>
+    <div class="box-footer">
+        <%= f.button :submit, class: 'btn btn-primary send-files', data: {disable_with: t("please_wait")} %>
+        <%= link_to t("back"), :back, class: "btn btn-default" %>
+    </div>
   </div>
 <% end %>
 <% content_for :javascripts, javascript_include_tag('repositories.new') %>
+</div>
