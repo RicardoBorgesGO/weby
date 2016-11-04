@@ -169,8 +169,8 @@ GEM
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
     ffi (1.9.14)
-    font-awesome-rails (4.1.0.0)
-      railties (>= 3.2, < 5.0)
+    font-awesome-rails (4.7.0.0)
+      railties (>= 3.2, < 5.1)
     fullcalendar-rails (2.4.0.0)
       jquery-rails (>= 3.1.1, < 5.0.0)
       momentjs-rails (>= 2.9.0)
@@ -389,7 +389,7 @@ DEPENDENCIES
   devise (~> 3.5.3)
   factory_girl_rails (~> 4.4.1)
   feedback!
-  font-awesome-rails (~> 4.1.0.0)
+  font-awesome-rails (~> 4.7.0.0)
   fullcalendar-rails
   gretel (~> 3.0.7)
   jcrop-rails-v2 (~> 0.9.12.3)

@@ -26,9 +26,9 @@ module AdminMenuHelper
 
   def content_menu_items
     {}.tap do |result|
-      result[:archives] = menu_item_to(t(".archives"), main_app.site_admin_repositories_path) if check_permission(Sites::Admin::RepositoriesController, [:index])
-      result[:pages] = menu_item_to(t(".pages"), main_app.site_admin_pages_path) if check_permission(Sites::Admin::PagesController, [:index])
-      result[:menus] = menu_item_to(t(".menus"), main_app.site_admin_menus_path) if check_permission(Sites::Admin::MenusController, [:index])
+      result[:archives] = menu_item_to(t(".archives"), main_app.site_admin_repositories_path, 'fa fa-files-o') if check_permission(Sites::Admin::RepositoriesController, [:index])
+      result[:pages] = menu_item_to(t(".pages"), main_app.site_admin_pages_path, 'fa fa-file-code-o') if check_permission(Sites::Admin::PagesController, [:index])
+      result[:menus] = menu_item_to(t(".menus"), main_app.site_admin_menus_path, 'fa fa-bars') if check_permission(Sites::Admin::MenusController, [:index])
     end
   end
 
