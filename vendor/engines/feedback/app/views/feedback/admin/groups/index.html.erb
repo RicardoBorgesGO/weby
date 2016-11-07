@@ -1,19 +1,23 @@
 <% title ".feedback" %>
 <% breadcrumb :groups %>
-<div class="pull-right">
-  <% if check_permission(Feedback::Admin::GroupsController, [:new]) %>
-    <%= link_to t(".new_group"),
-      new_admin_group_path,
-      class: "btn btn-success" %>
-  <% end %>
-  <% if check_permission(Feedback::Admin::MessagesController, [:index]) %>
-    <%= link_to  t(".messages"),
-      admin_messages_path,
-      class: "btn btn-default" %>
-  <% end %>
-</div>
-<div class="clearfix form-group"></div>
+<div class="box">
+  <div class="box-body">
+    <div class="pull-right">
+      <% if check_permission(Feedback::Admin::GroupsController, [:new]) %>
+        <%= link_to t(".new_group"),
+          new_admin_group_path,
+          class: "btn btn-success" %>
+      <% end %>
+      <% if check_permission(Feedback::Admin::MessagesController, [:index]) %>
+        <%= link_to  t(".messages"),
+          admin_messages_path,
+          class: "btn btn-default" %>
+      <% end %>
+    </div>
+    <div class="clearfix form-group"></div>
 
-<div id="list">
-  <%= render :partial => "list" %>
+    <div id="list">
+      <%= render :partial => "list" %>
+    </div>
+  </div>
 </div>

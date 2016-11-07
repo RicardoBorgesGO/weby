@@ -1,51 +1,59 @@
 <% title ".menus" %>
+
 <%= simple_form_for [:site_admin, @menu, @menu_item] do |f| %>
-  <%= f.show_errors %>
 
-  <% if @menu_item_parent %>
-    <div class="input">
-      <%= f.input :parent,
-        label: t(".parent_menu_item"),
-        :input_html => {:value => @menu_item_parent.title, :disabled => 'disabled' },
-        :as => :string %>
-      <%= f.input :parent_id,
-        :input_html => {:value => @menu_item_parent.id },
-        :as => :hidden %>
-    </div>
-  <% end %>
-  <%= each_i18n_tab available_locales(@menu_item) do |locale| %>
-    <%= f.i18ns_fields_for(locale) do |g| %>
-      <% unless g.object.id.blank? %>
-        <%= g.input :_destroy, wrapper: :checkbox, as: :boolean %>
+<div class="box">
+  <div class="box-body">
+
+      <%= f.show_errors %>
+
+      <% if @menu_item_parent %>
+        <div class="input">
+          <%= f.input :parent,
+            label: t(".parent_menu_item"),
+            :input_html => {:value => @menu_item_parent.title, :disabled => 'disabled' },
+            :as => :string %>
+          <%= f.input :parent_id,
+            :input_html => {:value => @menu_item_parent.id },
+            :as => :hidden %>
+        </div>
       <% end %>
+      <%= each_i18n_tab available_locales(@menu_item) do |locale| %>
+        <%= f.i18ns_fields_for(locale) do |g| %>
+          <% unless g.object.id.blank? %>
+            <%= g.input :_destroy, wrapper: :checkbox, as: :boolean %>
+          <% end %>
 
-      <%= g.input :title, placeholder: t(".title"),
-        input_html: {class: "title_input"} %>
+          <%= g.input :title, placeholder: t(".title"),
+            input_html: {class: "title_input"} %>
 
-      <%= g.input :description, 
-        :input_html => {:size => "40x2", :style => "height:50px;" }, :as => :text %>
-    <% end %>
-  <% end %>
-  
-  <% # URL Input %>
-  <%=  target_dialog_input(f, :target, true) %>
+          <%= g.input :description, 
+            :input_html => {:size => "40x2", :style => "height:50px;" }, :as => :text %>
+        <% end %>
+      <% end %>
+      
+      <% # URL Input %>
+      <%=  target_dialog_input(f, :target, true) %>
 
-  <div class="input">
-    <%= f.input :new_tab, wrapper: :checkbox,
-      as: :boolean, input_html: { class: "check-button" } %>
-  </div>
+      <div class="input">
+        <%= f.input :new_tab, wrapper: :checkbox,
+          as: :boolean, input_html: { class: "check-button" } %>
+      </div>
 
-  <div class="input">
-    <%= f.input :publish, wrapper: :checkbox,
-      as: :boolean, input_html: { class: "check-button" } %>
-  </div>
+      <div class="input">
+        <%= f.input :publish, wrapper: :checkbox,
+          as: :boolean, input_html: { class: "check-button" } %>
+      </div>
 
-  <div class="input">
-    <%= f.input :html_class %>
-  </div>
+      <div class="input">
+        <%= f.input :html_class %>
+      </div>
+    </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
-    <%= link_to t("back"), :back, class: "btn btn-default" %>
+    <div class="box-footer">
+      <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
+      <%= link_to t("back"), :back, class: "btn btn-default" %>
+    </div>
+    
   </div>
 <% end %> 

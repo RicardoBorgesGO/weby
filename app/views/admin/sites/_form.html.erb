@@ -1,28 +1,32 @@
-<%= simple_form_for [:admin, @site] do |f| %>
-  <%= f.show_errors %>
+<div class="box">
+  <div class="box-body">
+    <%= simple_form_for [:admin, @site] do |f| %>
+      <%= f.show_errors %>
 
-  <%= f.input :name, :hint => t("field_required"), :input_html => {:pattern => '^[a-z0-9_\-]+$'}  %>
-  <%= f.input :parent_id, :collection => main_sites_list(@site).collect{|s| [s.title || s.name ,s.id]}, :label => t(".main_site") %>
-  <%= f.input :url, :hint =>  (t("field_required") + " " + t(".example_url")), :placeholder => "http://"%>
-  <%= f.association :groupings, input_html: {class: 'select2 site-groupings'} %>
-  <%= f.input :domain, :hint => t(".domain_explain") %>
+      <%= f.input :name, :hint => t("field_required"), :input_html => {:pattern => '^[a-z0-9_\-]+$'}  %>
+      <%= f.input :parent_id, :collection => main_sites_list(@site).collect{|s| [s.title || s.name ,s.id]}, :label => t(".main_site") %>
+      <%= f.input :url, :hint =>  (t("field_required") + " " + t(".example_url")), :placeholder => "http://"%>
+      <%= f.association :groupings, input_html: {class: 'select2 site-groupings'} %>
+      <%= f.input :domain, :hint => t(".domain_explain") %>
 
-  <%= f.input :title, :input_html => {:maxlength => 50} %>
-  <%= f.input :description, :input_html => {:rows => 8}, :hint => t(".site_comments"), :as => :text %>
-  <%= f.input :view_desc_pages, :hint => t(".view_desc_pages_help"), :as => :boolean, wrapper: :checkbox %>
+      <%= f.input :title, :input_html => {:maxlength => 50} %>
+      <%= f.input :description, :input_html => {:rows => 8}, :hint => t(".site_comments"), :as => :text %>
+      <%= f.input :view_desc_pages, :hint => t(".view_desc_pages_help"), :as => :boolean, wrapper: :checkbox %>
 
-  <%= f.input :body_width, :hint => t(".example_width") %>
-  <%= f.input :per_page,  :hint => t(".example_per_page") %>
-  <%= f.input :per_page_default,  :required => true %>
+      <%= f.input :body_width, :hint => t(".example_width") %>
+      <%= f.input :per_page,  :hint => t(".example_per_page") %>
+      <%= f.input :per_page_default,  :required => true %>
 
-  <%= f.association :locales,
-    :as => :check_boxes,
-    :boolean_style => :nested,
-    :collection => Locale.all.map{|l| [flag(l), l.id] } %>
+      <%= f.association :locales,
+        :as => :check_boxes,
+        :boolean_style => :nested,
+        :collection => Locale.all.map{|l| [flag(l), l.id] } %>
 
-  <div class="form-actions">
-    <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
-    <%= link_to t("back"), :back, class: "btn btn-default" %>
+      <div class="box-footer">
+        <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
+        <%= link_to t("back"), :back, class: "btn btn-default" %>
+      </div>
+    <% end %>
+    <% content_for :javascripts, javascript_include_tag("sites.form") %>
   </div>
-<% end %>
-<% content_for :javascripts, javascript_include_tag("sites.form") %>
+</div>

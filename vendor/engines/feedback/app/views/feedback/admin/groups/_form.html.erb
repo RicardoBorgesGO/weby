@@ -1,14 +1,18 @@
 <% title ".feedback" %>
 <%= simple_form_for [:admin, @group], html: { class: 'form-horizontal' } do |f| %>
-  <%= f.show_errors %>
+  <div class="box">
+    <div class="box-body">
+      <%= f.show_errors %>
 
-  <%= f.input :name, :hint => t(".field_required") %>
+      <%= f.input :name, :hint => t(".field_required") %>
 
-  <%= f.input :emails, :hint => t(".comma_separated_emails"), as: :text, input_html: { rows: 4 } %>
+      <%= f.input :emails, :hint => t(".comma_separated_emails"), as: :text, input_html: { rows: 4 } %>
 
-  <div class="form-actions">
-    <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
-    <%= link_to t("back"), :back, class: "btn btn-default" %>
+      <div class="box-footer">
+        <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
+        <%= link_to t("back"), :back, class: "btn btn-default" %>
+      </div>
+    </div>
   </div>
 
 <% end %>

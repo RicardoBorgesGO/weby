@@ -1,27 +1,32 @@
 <% title ".feedbacktitle" %>
 <% breadcrumb params[:search].present? ? :message_search : :messages, params[:search] %>
-<div class="row">
-  <div class="col-md-5">
-    <%= form_tag admin_messages_path, method: 'get', autocapitalize: "off", class: 'search' do %>
-      <%= search_input params[:search] %>
-    <% end %>
-  </div>
-  <div class=" col-md-7">
-    <div class="pull-right">
-      <% if check_permission(Feedback::Admin::GroupsController, [:new]) %>
-        <%= link_to t(".new_group"),
-          new_admin_group_path,
-          class: "btn btn-success" %>
-      <% end %>
-      <% if check_permission(Feedback::Admin::GroupsController, [:index]) %>
-        <%= link_to t(".groups"),
-          admin_groups_path,
-          class: "btn btn-default" %>
-      <% end %>
+
+<div class="box">
+  <div class="box-body">
+    <div class="row">
+      <div class="col-md-5">
+        <%= form_tag admin_messages_path, method: 'get', autocapitalize: "off", class: 'search' do %>
+          <%= search_input params[:search] %>
+        <% end %>
+      </div>
+      <div class=" col-md-7">
+        <div class="pull-right">
+          <% if check_permission(Feedback::Admin::GroupsController, [:new]) %>
+            <%= link_to t(".new_group"),
+              new_admin_group_path,
+              class: "btn btn-success" %>
+          <% end %>
+          <% if check_permission(Feedback::Admin::GroupsController, [:index]) %>
+            <%= link_to t(".groups"),
+              admin_groups_path,
+              class: "btn btn-default" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div id="list">
+      <%= render :partial => "list" %>
     </div>
   </div>
-</div>
-
-<div id="list">
-  <%= render :partial => "list" %>
 </div>

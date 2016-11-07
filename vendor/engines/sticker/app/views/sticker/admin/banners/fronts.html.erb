@@ -1,31 +1,35 @@
 <% title ".banners" %>
 <% breadcrumb params[:search].present? ? :banners_search : :sticker_banners, params[:search] %>
 
-<div class="row">
-  <div class="col-md-5">
-    <%= form_tag fronts_admin_banners_path, method: 'get', autocapitalize: "off", class: 'search' do %>
-      <% search_input params[:search] %>
+<div class="box">
+  <div class="box-body">
+    <div class="row">
+      <div class="col-md-5">
+        <%= form_tag fronts_admin_banners_path, method: 'get', autocapitalize: "off", class: 'search' do %>
+          <% search_input params[:search] %>
+        <% end %>
+      </div>
+      <div class="col-md-7">
+        <div class="pull-right">
+          <% with_permission(action: :new) do %>
+            <%= link_to t(".new_banner"), new_admin_banner_path, class: "btn btn-success" %>
+          <% end %>
+          <% with_permission(action: :index) do %>
+            <%= link_to t(".all_banners"), admin_banners_path, class: "btn btn-default" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <% if @banners.empty? %>
+      <div class="alert alert-warning">
+        <%= t(".none_published") %>
+      </div>
+
+    <% else %>
+      <div id="list">
+        <%= render :partial => "list" %>
+      </div>
     <% end %>
   </div>
-  <div class="col-md-7">
-    <div class="pull-right">
-      <% with_permission(action: :new) do %>
-        <%= link_to t(".new_banner"), new_admin_banner_path, class: "btn btn-success" %>
-      <% end %>
-      <% with_permission(action: :index) do %>
-        <%= link_to t(".all_banners"), admin_banners_path, class: "btn btn-default" %>
-      <% end %>
-    </div>
-  </div>
 </div>
-
-<% if @banners.empty? %>
-  <div class="alert alert-warning">
-    <%= t(".none_published") %>
-  </div>
-
-<% else %>
-  <div id="list">
-    <%= render :partial => "list" %>
-  </div>
-<% end %>
