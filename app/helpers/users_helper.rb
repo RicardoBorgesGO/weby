@@ -10,6 +10,22 @@ module UsersHelper
     sites
   end
 
+  def notifications_icon_admin
+    user = User.find(current_user.id)
+    unread = user.unread_notifications_array
+    if unread.empty?
+      link_to main_app.notifications_url(subdomain: current_site), title: t('notifications.index.notifications') do
+        "<i class=\"fa fa-envelope-o\"></i>".html_safe
+      end
+    else
+      link_to main_app.notifications_url(subdomain: current_site) do
+        content_tag(:span, title: t('notifications.index.notifications')) do
+          "<i class=\"fa fa-envelope-o\"></i><span class=\"label label-success\">#{unread.size}</span>".html_safe
+        end
+      end
+    end
+  end
+
   def notifications_icon
     user = User.find(current_user.id)
     unread = user.unread_notifications_array
