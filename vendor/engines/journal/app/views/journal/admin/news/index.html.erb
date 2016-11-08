@@ -1,54 +1,58 @@
 <% title ".news" %>
 <% breadcrumb params[:search].present? ? :news_search : :news, params[:search] %>
 
-<% if @newsletter.present? && @newsletter.publish %>
-  <div class="tabbable">
-    <ul class="nav nav-tabs" id="tabs">
-      <li class="active" id="tab_news">
-        <%= link_to(t(".news"), '#') %>
-      </li>
-      <li class="" id="tab_newsletter">
-        <%= link_to(t(".newsletter"), admin_newsletter_histories_path) %>
-      </li>
-    </ul>
-  </div>
-  <br>
-<% end %>
+<div class="box">
+  <div class="box-body">
 
-<%= form_tag main_app.admin_news_index_path, method: 'get', autocapitalize: "off", class: 'search' do %>
-  <div class="row">
-    <div class="col-md-4">
-      <%= search_input params[:search] %>
-    </div>
-    <div class="col-md-3">
-      <%= select_tag "status_filter",
-          options_for_select(@status_types, params[:status_filter]),
-          include_blank: true,
-          style: 'vertical-align: top;',
-          class: 'select2 search-filter form-control' %>
-    </div>
-    <div class="col-md-5">
-      <div class="pull-right">
-        <% with_permission(action: :new) do %>
-          <%= link_to t(".new_news"),
-              main_app.new_admin_news_path,
-              class: "btn btn-success" %>
-        <% end %>
-        <% with_permission(action: :fronts) do %>
-          <%= link_to t(".covers"), fronts_admin_news_index_path, class: "btn btn-default" %>
-        <% end %>
-        <% with_permission(action: [:recover, :purge]) do %>
-          <%= link_to t("recycle_bin"), main_app.recycle_bin_admin_news_index_path, class: "btn btn-default" %>
-        <% end %>
-        <% with_permission(controller: Sites::Admin::ExtensionsController, action: [:edit]) do %>
-          <%= link_to icon('cog'), edit_site_admin_extension_path(current_site.extensions.find_by(name: 'journal')), class: "btn btn-default", title: t('.settings') %>
-        <% end %>
+    <% if @newsletter.present? && @newsletter.publish %>
+      <div class="tabbable">
+        <ul class="nav nav-tabs" id="tabs">
+          <li class="active" id="tab_news">
+            <%= link_to(t(".news"), '#') %>
+          </li>
+          <li class="" id="tab_newsletter">
+            <%= link_to(t(".newsletter"), admin_newsletter_histories_path) %>
+          </li>
+        </ul>
       </div>
+      <br>
+    <% end %>
+
+    <%= form_tag main_app.admin_news_index_path, method: 'get', autocapitalize: "off", class: 'search' do %>
+      <div class="row">
+        <div class="col-md-4">
+          <%= search_input params[:search] %>
+        </div>
+        <div class="col-md-3">
+          <%= select_tag "status_filter",
+              options_for_select(@status_types, params[:status_filter]),
+              include_blank: true,
+              style: 'vertical-align: top;',
+              class: 'select2 search-filter form-control' %>
+        </div>
+        <div class="col-md-5">
+          <div class="pull-right">
+            <% with_permission(action: :new) do %>
+              <%= link_to t(".new_news"),
+                  main_app.new_admin_news_path,
+                  class: "btn btn-success" %>
+            <% end %>
+            <% with_permission(action: :fronts) do %>
+              <%= link_to t(".covers"), fronts_admin_news_index_path, class: "btn btn-default" %>
+            <% end %>
+            <% with_permission(action: [:recover, :purge]) do %>
+              <%= link_to t("recycle_bin"), main_app.recycle_bin_admin_news_index_path, class: "btn btn-default" %>
+            <% end %>
+            <% with_permission(controller: Sites::Admin::ExtensionsController, action: [:edit]) do %>
+              <%= link_to icon('cog'), edit_site_admin_extension_path(current_site.extensions.find_by(name: 'journal')), class: "btn btn-default", title: t('.settings') %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div id="news">
+      <%= render :partial => "list" %>
     </div>
   </div>
-<% end %>
-<div id="news">
-  <%= render :partial => "list" %>
 </div>
-
 <% content_for :javascripts, javascript_include_tag('journal/admin.news.index') %>

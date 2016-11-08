@@ -1,23 +1,27 @@
-<%= simple_form_for [:admin, @grouping] do |f| %>
-  <%= f.show_errors %>
+<div class="box">
+  <div class="box-body">
+    <%= simple_form_for [:admin, @grouping] do |f| %>
+      <%= f.show_errors %>
 
-  <%= f.input :name %>
-  <%= f.input :hidden, wrapper: :checkbox %>
-  <%= f.association :sites, labelmethod: :title, input_html: {class: 'select2 site-groupings'} %>
+      <%= f.input :name %>
+      <%= f.input :hidden, wrapper: :checkbox %>
+      <%= f.association :sites, labelmethod: :title, input_html: {class: 'select2 site-groupings'} %>
 
-  <div class="form-actions">
-    <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
-    <%= link_to t("back"), :back, class: "btn btn-default" %>
+      <div class="box-footer">
+        <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
+        <%= link_to t("back"), :back, class: "btn btn-default" %>
+      </div>
+      <% content_for :javascripts do %>
+        <% javascript_tag do %>
+        $(function (){
+
+         $('.site-groupings').select2({
+             width: 'resolve'
+         });
+
+      });
+      <% end %>
+      <% end %>
+    <% end %>
   </div>
-  <% content_for :javascripts do %>
-    <% javascript_tag do %>
-    $(function (){
-
-     $('.site-groupings').select2({
-         width: 'resolve'
-     });
-
-  });
-  <% end %>
-  <% end %>
-<% end %>
+</div>

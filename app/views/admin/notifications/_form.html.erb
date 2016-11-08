@@ -1,13 +1,17 @@
-<%= simple_form_for [:admin, @notification] do |f| %>
-  <%= f.show_errors %>
-  <%= f.input :title %>
-  <%= f.input :body,
-    :input_html => {class: "mceSimple", style: "width: 550px; height: 280px;"},
-    :as => :text,
-    :required => false %>
-  <div class="form-actions">
-    <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
-    <%= link_to t("back"), :back, class: "btn btn-default" %>
+<div class="box">
+  <div class="box-body">
+    <%= simple_form_for [:admin, @notification] do |f| %>
+      <%= f.show_errors %>
+      <%= f.input :title %>
+      <%= f.input :body,
+        :input_html => {class: "mceSimple", style: "width: 550px; height: 280px;"},
+        :as => :text,
+        :required => false %>
+      <div class="box-footer">
+        <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
+        <%= link_to t("back"), :back, class: "btn btn-default" %>
+      </div>
+    <% end %>
+    <% content_for :javascripts, javascript_include_tag("init/tinymce") %>
   </div>
-<% end %>
-<% content_for :javascripts, javascript_include_tag("init/tinymce") %>
+</div>

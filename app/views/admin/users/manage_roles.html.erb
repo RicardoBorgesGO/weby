@@ -1,18 +1,21 @@
+<div class="box">
+  <div class="box-body">
+    <p class="pull-right">
+      <% if check_permission(Admin::UsersController, [:index]) %>
+        <%= link_to t(".users"), admin_users_path, class: "btn btn-default" %>
+      <% end %>
+      <% if check_permission(Admin::UsersController, :change_roles) %>
+        <%= link_to t('.roles_permissions'), admin_roles_path, class: "btn btn-default" %>
+      <% end %>
+    </p>
+    <div class="clearfix"></div>
 
-<p class="pull-right">
-  <% if check_permission(Admin::UsersController, [:index]) %>
-    <%= link_to t(".users"), admin_users_path, class: "btn btn-default" %>
-  <% end %>
-  <% if check_permission(Admin::UsersController, :change_roles) %>
-    <%= link_to t('.roles_permissions'), admin_roles_path, class: "btn btn-default" %>
-  <% end %>
-</p>
-<div class="clearfix"></div>
+    <div id="enroled">
+      <%= render 'enroled' %>
+    </div>
+    <div id="enrole">
+      <%= render 'enrole' %>
+    </div>
 
-<div id="enroled">
-  <%= render 'enroled' %>
+  </div>
 </div>
-<div id="enrole">
-  <%= render 'enrole' %>
-</div>
-

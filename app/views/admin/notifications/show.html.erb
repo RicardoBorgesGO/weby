@@ -1,12 +1,16 @@
-<div class="user_profile">
-  <br />
-  <p><b><%= t('.id') %>: </b> <%= @notification.id %></p>
-  <p><b><%= t('.title') %>: </b> <%= @notification.title %></p>
-  <p><b><%= t('.body') %>: </b><pre> <%= raw @notification.body %> </pre> </p>
-  <p><b><%= t('.created_at') %>: </b><%= l(@notification.created_at, :format => :short) %></p>
+<div class="box">
+  <div class="box-body">
+    <div class="user_profile">
+      <br />
+      <p><b><%= t('.id') %>: </b> <%= @notification.id %></p>
+      <p><b><%= t('.title') %>: </b> <%= @notification.title %></p>
+      <p><b><%= t('.body') %>: </b><pre> <%= raw @notification.body %> </pre> </p>
+      <p><b><%= t('.created_at') %>: </b><%= l(@notification.created_at, :format => :short) %></p>
+    </div>
+    <div class="box-footer">
+      <%= make_menu(@notification, :except => "show") %>
+      <%= link_to icon('list', text:t(".list_all")), admin_notifications_path %>
+      <%= link_to icon('chevron-left', text:t("back")), :back %>
+    </div>    
+  </div>
 </div>
-<div class="form-actions">
-  <%= make_menu(@notification, :except => "show") %>
-  <%= link_to icon('list', text:t(".list_all")), admin_notifications_path %>
-  <%= link_to icon('chevron-left', text:t("back")), :back %>
-</div>    

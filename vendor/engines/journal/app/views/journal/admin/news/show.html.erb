@@ -1,14 +1,17 @@
 <% title ".news" %>
 <% breadcrumb :news_show, @news %>
+<div class="box">
+  <div class="box-body">
+    <article class="news-show">
+      
+      <%= render 'show' %>
 
-<article class="news-show">
-  
-  <%= render 'show' %>
-
-  <div class="form-actions">
-    <%= link_to icon('eye-open', text: t('show')), news_path(@news) if @news.published? || @news.user_id == current_user.id %>
-    <%= make_menu(@news, :except => "show") %>
-    <%= link_to icon('list', text: t(".list_all")), admin_news_index_path %>
-    <%= link_to icon('chevron-left', text: t("back")), :back %>
+      <div class="box-footer">
+        <%= link_to icon('eye-open', text: t('show')), news_path(@news) if @news.published? || @news.user_id == current_user.id %>
+        <%= make_menu(@news, :except => "show") %>
+        <%= link_to icon('list', text: t(".list_all")), admin_news_index_path %>
+        <%= link_to icon('chevron-left', text: t("back")), :back %>
+      </div>
+    </article>
   </div>
-</article>
+</div>
