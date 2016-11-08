@@ -1,20 +1,23 @@
 <%= simple_form_for [:site_admin, @page] do |f| %>
-  <%= f.show_errors %>
+  <div class="box">
+    <div class="box-body">
+      <%= f.show_errors %>
 
-  <%= render('translates_form', f: f) %>
+      <%= render('translates_form', f: f) %>
 
-  <%= f.input :publish, wrapper_html: { class: "side" }, 
-    as: :boolean,
-    input_html: { class: "check-button" },
-    wrapper: :checkbox %>
+      <%= f.input :publish, wrapper_html: { class: "side" }, 
+        as: :boolean,
+        input_html: { class: "check-button" },
+        wrapper: :checkbox %>
 
-  <%= repository_search t(".related_files"),
-    "related_file_ids", "page[related_file_ids][]", @page.related_files,
-    multiple: true, file_types: false %>
-  
-  <div class="box-footer">
-    <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
-    <%= link_to t("back"), :back, class: "btn btn-default" %>
+      <%= repository_search t(".related_files"),
+        "related_file_ids", "page[related_file_ids][]", @page.related_files,
+        multiple: true, file_types: false %>
+    </div>  
+    <div class="box-footer">
+      <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
+      <%= link_to t("back"), :back, class: "btn btn-default" %>
+    </div>
   </div>
 <% end %>
 

@@ -1,9 +1,9 @@
 <div class="btn-group">
   <%= link_to url_for(params.merge(banners_view: 'thumbs')), class: "btn btn-default", title: t(".banners_as_thumbs") do %>
-    <%= icon('th', white: true) %>
+    <%= icon('th') %>
   <% end %>
   <%= link_to url_for(params.merge(banners_view: 'list')), class: "btn btn-default", title: t(".banners_as_list") do %>
-    <%= icon('list', white: true) %>
+    <%= icon('list') %>
   <%  end %>
 </div>
 <div class="clearfix"></div>

@@ -1,11 +1,13 @@
 <%= simple_form_for [:site_admin, @role] do |f| %>
-  <%= f.show_errors %>
+  <div class="box">
+    <div class="box-body">
+      <%= f.show_errors %>
 
-  <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden if @site %>
-  <%= f.input :name  %>
-
-  <div class="box-footer">
-    <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
-    <%= link_to t("back"), :back, class: "btn btn-default" %>
-  </div>
+      <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden if @site %>
+      <%= f.input :name  %>
+    </div>
+    <div class="box-footer">
+      <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
+      <%= link_to t("back"), :back, class: "btn btn-default" %>
+    </div>
 <% end %>

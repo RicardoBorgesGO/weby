@@ -1,17 +1,20 @@
 <% title ".feedback" %>
 <% breadcrumb :show_group, @group %>
-<p>
-  <b><%= t('.name') %> :</b>
-  <%= @group.name %>
-</p>
-<p>
-  <b>Email(s) :</b>
-  <%= @group.emails %>
-</p>
 
-<div class="form-actions">
-  <%= link_to icon('list', text:t(".list_all")), admin_groups_path %>
-  <%= link_to icon('chevron-left', text:t("back")), :back %>
+<div class="box">
+  <div class="box-body">
+    <p>
+      <b><%= t('.name') %> :</b>
+      <%= @group.name %>
+    </p>
+    <p>
+      <b>Email(s) :</b>
+      <%= @group.emails %>
+    </p>
+
+    <div class="box-footer">
+      <%= link_to icon('list', text:t(".list_all")), admin_groups_path %>
+      <%= link_to icon('chevron-left', text:t("back")), :back %>
+    </div>
+  </div>
 </div>
-
-

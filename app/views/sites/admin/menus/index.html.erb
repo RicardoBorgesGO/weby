@@ -28,7 +28,7 @@
       </div>
       <% if @menu %>
         <% with_permission controller: Sites::Admin::Menus::MenuItemsController, action: :new do %>
-          <div class="pull-right">
+          <div class="pull-right button-tab">
             <%= link_to t(".new_menu_item"),
               new_site_admin_menu_menu_item_path(@menu),
               class: "btn btn-success" %>
